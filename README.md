@@ -53,7 +53,7 @@ chmod +x load.sh
 ## Example Output
 
 ```
-▶ Loading key import
+▶ Executing
 ✅ Key properly imported and ready for use.
 ```
 
