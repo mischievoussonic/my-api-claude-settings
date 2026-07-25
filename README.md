@@ -1,4 +1,4 @@
-# my personal ANTHROPIC API KEY settings
+# my personal ANTHROPIC_API_KEY settings
 
 A locally executed shell script that loads my `.env` and runs them securely.
 
@@ -12,7 +12,7 @@ The key has no expiration date.
 
 | File | Purpose |
 |------|---------|
-| `.env` | Stores the ANTHROPIC API KEY |
+| `.env` | Stores the ANTHROPIC_API_KEY |
 | `load.sh` | Loads the `.env` file and executes/loads the configured variable. |
 | `AGENTS.md` | Guide for my AGENTS for day-to-day operations |
 
