@@ -1,4 +1,4 @@
-# my personal ANTHROPIC_API_KEY settings
+# my personal API settings
 
 A locally executed shell script that loads my `.env` and runs them securely.
 
