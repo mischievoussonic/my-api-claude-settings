@@ -1,62 +1,155 @@
-# my personal API settings
+<div align="center">
 
-A locally executed shell script that loads my `.env` and runs them securely.
+# Personal API Environment Loader
+
+<p>
+  A lightweight Bash utility to securely load my local API credentials from a 
+  <code>.env</code> file into the current shell session.
+</p>
+
+<p>
+  <img src="https://img.shields.io/badge/Shell-Bash-4EAA25?logo=gnu-bash&logoColor=white" alt="Bash">
+  <img src="https://img.shields.io/badge/Platform-Linux%20%7C%20macOS%20%7C%20WSL-blue" alt="Supported platforms">
+  <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="MIT License">
+</p>
+
+</div>
+
+---
 
 ## Overview
 
-This project automates the loading of my ANTHROPIC API KEY. Instead of running it manually every time, it executes via a single script.
+This project provides a simple local workflow for loading my Anthropic API key from a `.env` file.
 
-The key has no expiration date.
+Instead of manually exporting the environment variable whenever a new terminal session is opened, the included `load.sh` script loads the configured values into the current shell environment.
 
-## Files
+The project is intentionally minimal and contains no external dependencies.
 
-| File | Purpose |
-|------|---------|
-| `.env` | Stores the ANTHROPIC_API_KEY |
-| `load.sh` | Loads the `.env` file and executes/loads the configured variable. |
-| `AGENTS.md` | Guide for my AGENTS for day-to-day operations |
+## Project Structure
+
+| File        | Purpose                                                           |
+| ----------- | ----------------------------------------------------------------- |
+| `.env`      | Stores the local `ANTHROPIC_API_KEY` value. 
+| `load.sh`   | Validates and loads the environment variables                     |
+| `AGENTS.md` | Operational instructions for programming agents                   |
+| `README.md` | Project documentation                                             |
 
 ## Requirements
 
-- Bash shell (Linux / macOS / WSL)
+* Bash
+* Linux, macOS or Windows Subsystem for Linux
 
-## Setup
+No package installation is required.
 
-### 1. Initial instruction for my programming agent
+## Installation
 
-Clone the project. Do not modify the .env file, as the KEY is already configured.
-
-```bash
-ANTHROPIC_API_KEY=sk-ant-...
-```
-
-### 2. Automatic loading
-
-The script `load.sh` is included in this project. Ensure it is present:
+### 1. Clone the repository
 
 ```bash
-ls load.sh
+git clone https://github.com/mischievoussonic/my-api-claude-settings.git
+cd my-api-claude-settings
 ```
 
-### 3. Make Executable (if needed)
+Replace the placeholders with the URL and directory name of your repository.
+
+### 2. Make the script executable
 
 ```bash
-chmod +x load.sh
+chmod 700 load.sh
 ```
 
-### 4. Run
+## Usage
+
+Load the API key into the current shell session:
+
+```bash
+source ./load.sh
+```
+
+The `source` command is required when the variable must remain available in the current terminal after the script finishes.
+
+You can also use the shorter Bash syntax:
+
+```bash
+. ./load.sh
+```
+
+## Verification
+
+Confirm that the variable was loaded without displaying the API key:
+
+```bash
+if [[ -n "${ANTHROPIC_API_KEY:-}" ]]; then
+  echo "API key loaded successfully."
+else
+  echo "API key is not available."
+fi
+```
+
+Example output:
+
+```text
+▶ Loading environment variables
+✓ API key loaded successfully
+```
+
+## Troubleshooting
+
+<details>
+<summary><strong>Permission denied when running the script</strong></summary>
+
+Make the script executable:
+
+```bash
+chmod 700 load.sh
+```
+
+Then load it again:
+
+```bash
+source ./load.sh
+```
+
+</details>
+
+<details>
+<summary><strong>The API key disappears after the script finishes</strong></summary>
+
+Running the script as a separate process does not modify the parent shell environment:
 
 ```bash
 ./load.sh
 ```
 
-## Example Output
+Load it into the current shell instead:
 
+```bash
+source ./load.sh
 ```
-▶ Executing
-✅ Key properly imported and ready for use.
+
+</details>
+
+<details>
+<summary><strong>The API key was not loaded</strong></summary>
+
+Confirm that `.env` exists:
+
+```bash
+test -f .env && echo ".env found" || echo ".env not found"
 ```
+
+</details>
 
 ## License
 
-MIT — use at your own risk. Always double-check your paths before running.
+Distributed under the MIT License.
+
+Use this project at your own risk and review scripts before executing them in your environment.
+
+---
+
+<div align="center">
+
+Created for a simple, local, and secure API development workflow for my day-to-day work.
+
+</div>
