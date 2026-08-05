@@ -90,7 +90,7 @@ Example output:
 
 ```text
 ▶ Loading environment variables
-✓ API key loaded successfully
+✓ My API key loaded successfully
 ```
 
 ## Troubleshooting
